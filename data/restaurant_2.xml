@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restaurant>
+    <id>2</id>
+    <name>Pizza Hut</name>
+    <address>456 Oak Ave</address>
+    <schedule>10:00 AM - 11:00 PM</schedule>
+    <menu>
+        <item>
+            <id>m3</id>
+            <name>Pepperoni Pizza</name>
+            <price>12.99</price>
+            <description>Classic pepperoni pizza</description>
+            <available>true</available>
+        </item>
+        <item>
+            <id>m4</id>
+            <name>Cheesy Garlic Bread</name>
+            <price>5.5</price>
+            <description>Freshly baked garlic bread</description>
+            <available>true</available>
+        </item>
+    </menu>
+</restaurant>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout - FooDDe</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="color: white; text-decoration: none;">FooDDe</a></h1>
+    </header>
+
+    <main>
+        <div style="max-width: 400px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h2>Complete Your Order</h2>
+            <p>Please provide your delivery details.</p>
+            
+            <form action="/login" method="POST">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Full Name</label>
+                    <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Delivery Address</label>
+                    <textarea name="address" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; height: 80px;"></textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Phone Number</label>
+                    <input type="tel" name="phone" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <button type="submit" style="width: 100%; background: #e8491d; color: white; border: none; padding: 10px; border-radius: 4px; font-size: 1em; cursor: pointer;">Continue to Checkout</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

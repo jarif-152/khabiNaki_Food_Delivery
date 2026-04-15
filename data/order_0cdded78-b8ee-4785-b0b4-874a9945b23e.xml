@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <id>0cdded78-b8ee-4785-b0b4-874a9945b23e</id>
+    <userId>fb15126b-8ccf-493b-8688-21362238c587</userId>
+    <restaurantId>1</restaurantId>
+    <items>
+        <item>
+            <menuItem>
+                <id>m1</id>
+                <name>Whopper</name>
+                <price>5.99</price>
+                <description>Flame-grilled beef patty</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <totalAmount>5.99</totalAmount>
+    <status>Preparing</status>
+</order>

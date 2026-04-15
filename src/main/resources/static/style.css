@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.restaurant-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 250px;
+}
+
+.restaurant-card h3 {
+    margin-top: 0;
+}
+
+.restaurant-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #e8491d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 600px;
+}
+
+.menu-item-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.menu-item-card h4 {
+    margin: 0;
+}
+
+.menu-item-card p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.price-action {
+    text-align: right;
+}
+
+.price-action span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #219150;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - FooDDe</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="color: white; text-decoration: none;">FooDDe</a></h1>
+    </header>
+
+    <main>
+        <h2>Your Shopping Cart</h2>
+
+        <div th:if="${order.items.empty}">
+            <p>Your cart is empty. <a href="/">Go find some food!</a></p>
+        </div>
+
+        <div th:if="${!order.items.empty}">
+            <table style="width: 100%; border-collapse: collapse; background: white; padding: 10px; border-radius: 8px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #eee;">
+                        <th style="padding: 10px; text-align: left;">Item</th>
+                        <th style="padding: 10px; text-align: center;">Qty</th>
+                        <th style="padding: 10px; text-align: right;">Price</th>
+                        <th style="padding: 10px; text-align: right;">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${order.items}" style="border-bottom: 1px solid #eee;">
+                        <td th:text="${item.menuItem.name}" style="padding: 10px;">Item Name</td>
+                        <td th:text="${item.quantity}" style="padding: 10px; text-align: center;">1</td>
+                        <td th:text="'$' + ${item.menuItem.price}" style="padding: 10px; text-align: right;">$0.00</td>
+                        <td th:text="'$' + ${item.subtotal}" style="padding: 10px; text-align: right;">$0.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2em;">Total:</td>
+                        <td th:text="'$' + ${order.totalAmount}" style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2em; color: #e8491d;">$0.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div style="margin-top: 20px; text-align: right;">
+                <a href="/" style="background: #35424a; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Add More Food</a>
+                <form action="/checkout" method="POST" style="display: inline-block;">
+                    <button type="submit" style="background: #e8491d; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 1em; cursor: pointer; margin-left: 10px;">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

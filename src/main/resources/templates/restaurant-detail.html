@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${restaurant.name} + ' - FooDDe'">Restaurant Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="color: white; text-decoration: none;">FooDDe</a></h1>
+        <div style="text-align: right; padding-right: 20px; margin-top: -35px;">
+            <a href="/cart" style="color: white; text-decoration: none; background: #27ae60; padding: 5px 15px; border-radius: 4px;">View Cart</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="restaurant-info">
+            <h2 th:text="${restaurant.name}">Restaurant Name</h2>
+            <p th:text="${restaurant.address}">Address</p>
+            <p th:text="'Opening Hours: ' + ${restaurant.schedule}">Schedule</p>
+        </div>
+
+        <h3>Menu</h3>
+        <div class="menu-list">
+            <div th:each="item : ${restaurant.menu}" class="menu-item-card">
+                <div>
+                    <h4 th:text="${item.name}">Item Name</h4>
+                    <p th:text="${item.description}">Description</p>
+                </div>
+                <div class="price-action">
+                    <span th:text="'$' + ${item.price}">$0.00</span>
+                    <form action="/cart/add" method="POST">
+                        <input type="hidden" name="restaurantId" th:value="${restaurant.id}">
+                        <input type="hidden" name="menuItemId" th:value="${item.id}">
+                        <button type="submit" class="add-btn">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

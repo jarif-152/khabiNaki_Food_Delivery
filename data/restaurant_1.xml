@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restaurant>
+    <id>1</id>
+    <name>Burger King</name>
+    <address>123 Main St</address>
+    <schedule>9:00 AM - 10:00 PM</schedule>
+    <menu>
+        <item>
+            <id>m1</id>
+            <name>Whopper</name>
+            <price>5.99</price>
+            <description>Flame-grilled beef patty</description>
+            <available>true</available>
+        </item>
+        <item>
+            <id>m2</id>
+            <name>Chicken Fries</name>
+            <price>4.49</price>
+            <description>9pc Crispy chicken fries</description>
+            <available>true</available>
+        </item>
+    </menu>
+</restaurant>

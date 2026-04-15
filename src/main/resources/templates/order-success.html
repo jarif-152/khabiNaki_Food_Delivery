@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Placed! - FooDDe</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="color: white; text-decoration: none;">FooDDe</a></h1>
+    </header>
+
+    <main>
+        <div style="text-align: center; max-width: 600px; margin: 40px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <div style="font-size: 3em; color: #27ae60; margin-bottom: 20px;">✓</div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Your order is now being prepared by the restaurant.</p>
+            <p style="font-size: 1.1em; margin: 20px 0;">Order Tracking ID: <span th:text="${order.id}" style="font-weight: bold; color: #e8491d;">ID</span></p>
+            <p>Total amount paid: <span th:text="'$' + ${order.totalAmount}" style="font-weight: bold;">$0.00</span></p>
+            
+            <div style="margin-top: 30px;">
+                <a href="/" style="background: #35424a; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">Back to Home</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
