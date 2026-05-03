@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0eefa;
+}
+header {
+    background: #3b2d7a;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    margin: 0;
+    flex: 1;
+}
+.top-nav {
+    display: flex;
+    gap: 20px;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav-link:hover {
+    text-decoration: underline;
+}
+.search-bar {
+    margin: 20px 0;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+.search-bar form {
+    display: flex;
+    gap: 10px;
+}
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #c9c0f0;
+    border-radius: 4px;
+    font-size: 1em;
+}
+.search-bar button {
+    padding: 10px 20px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.search-bar button:hover {
+    background: #6d28d9;
+}
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+.restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.restaurant-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(100, 60, 200, 0.1);
+    width: 250px;
+}
+.restaurant-card h3 {
+    margin-top: 0;
+}
+.restaurant-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #7c3aed;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.menu-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 600px;
+}
+.menu-item-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(100, 60, 200, 0.07);
+}
+.menu-item-card h4 {
+    margin: 0;
+}
+.menu-item-card p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+.price-action {
+    text-align: right;
+}
+.price-action span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.add-btn {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.add-btn:hover {
+    background: #6d28d9;
+}

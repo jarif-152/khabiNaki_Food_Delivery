@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KhabiNaki - Home</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>KhabiNaki</h1>
+        <nav class="top-nav">
+            <a href="/orders" class="nav-link">My Orders</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Nearby Restaurants</h2>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form method="get" action="/">
+                <input type="text" name="search" placeholder="Search restaurants or area..." 
+                       th:value="${searchQuery}" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Restaurant List -->
+        <div class="restaurant-list">
+            <div th:if="${restaurants.isEmpty()}" class="no-results">
+                <p>No restaurants found. Try a different search.</p>
+            </div>
+            <div th:each="res : ${restaurants}" class="restaurant-card">
+                <h3 th:text="${res.name}">Restaurant Name</h3>
+                <p th:text="${res.address}">Address</p>
+                <p th:text="${res.schedule}">Schedule</p>
+                <a th:href="@{'/restaurant/' + ${res.id}}">View Menu</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
