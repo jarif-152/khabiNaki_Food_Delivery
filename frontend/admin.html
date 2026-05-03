@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorja Khul — Admin</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-logo">⚡ Dorja Khul <small>Admin</small></div>
+
+    <div class="sb-sec">Restaurant</div>
+    <button class="ni active" onclick="show('dashboard',this)">📊 Dashboard</button>
+    <button class="ni" onclick="show('restaurants',this)">🏪 Restaurants</button>
+    <button class="ni" onclick="show('menu',this)">🍽️ Menu Items</button>
+    <button class="ni" onclick="show('schedule',this)">🕐 Schedule</button>
+
+    <div class="sb-sec">Operations</div>
+    <button class="ni" onclick="show('orders',this)">📋 Incoming Orders</button>
+    <button class="ni" onclick="show('riders',this)">🛵 Riders</button>
+    <button class="ni" onclick="show('payments',this)">💰 Payments</button>
+    <button class="ni" onclick="show('coupons',this)">🏷️ Coupons</button>
+
+    <div style="flex:1"></div>
+    <div style="padding:.9rem;border-top:1px solid var(--border)">
+      <a href="index.html"
+        style="display:flex;align-items:center;gap:.5rem;color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:500;transition:color .2s"
+        onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">← Customer View</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="online">
+        <div class="pulse"></div>SOAP Services Online · Port 8080
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div class="section active" id="section-dashboard">
+        <div class="stats">
+          <div class="stat s-blue"><span class="stat-icon">📡</span><span class="stat-lbl">Endpoints</span><span
+              class="stat-val">3</span></div>
+          <div class="stat s-gold" style="animation-delay:.05s"><span class="stat-icon">🔧</span><span
+              class="stat-lbl">SOAP Methods</span><span class="stat-val">20</span></div>
+          <div class="stat s-green" style="animation-delay:.1s"><span class="stat-icon">⚡</span><span
+              class="stat-lbl">Status</span><span class="stat-val">Live</span></div>
+          <div class="stat s-red" style="animation-delay:.15s"><span class="stat-icon">🚪</span><span
+              class="stat-lbl">Port</span><span class="stat-val">8080</span></div>
+        </div>
+
+        <div class="g2">
+          <div class="card" style="animation-delay:.05s">
+            <div class="card-title">🔗 Active Endpoints</div>
+            <div style="display:flex;flex-direction:column;gap:.42rem">
+              <div class="li" style="cursor:default">
+                <div class="li-l">
+                  <div class="li-name">RestaurantService</div>
+                  <div class="li-sub">/RestaurantService?wsdl</div>
+                </div><span class="badge b-green">UP</span>
+              </div>
+              <div class="li" style="cursor:default">
+                <div class="li-l">
+                  <div class="li-name">OrderService</div>
+                  <div class="li-sub">/OrderService?wsdl</div>
+                </div><span class="badge b-green">UP</span>
+              </div>
+              <div class="li" style="cursor:default">
+                <div class="li-l">
+                  <div class="li-name">AdminService</div>
+                  <div class="li-sub">/AdminService?wsdl</div>
+                </div><span class="badge b-green">UP</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="animation-delay:.1s">
+            <div class="card-title">⚡ Quick Actions</div>
+            <div style="display:flex;flex-direction:column;gap:.5rem">
+              <button class="btn btn-o" style="width:100%;justify-content:flex-start"
+                onclick="show('restaurants',document.querySelector('[onclick*=restaurants]'))">🏪 Register
+                Restaurant</button>
+              <button class="btn btn-o" style="width:100%;justify-content:flex-start"
+                onclick="show('menu',document.querySelector('[onclick*=menu]'))">🍽️ Add Menu Item</button>
+              <button class="btn btn-o" style="width:100%;justify-content:flex-start"
+                onclick="show('orders',document.querySelector('[onclick*=orders]'))">📋 View Incoming Orders</button>
+              <button class="btn btn-o" style="width:100%;justify-content:flex-start"
+                onclick="show('riders',document.querySelector('[onclick*=riders]'))">🛵 Manage Riders</button>
+              <button class="btn btn-o" style="width:100%;justify-content:flex-start"
+                onclick="show('coupons',document.querySelector('[onclick*=coupons]'))">🏷️ Manage Coupons</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESTAURANTS -->
+      <div class="section" id="section-restaurants">
+        <div class="card">
+          <div class="card-title">🏪 Register New Restaurant</div>
+          <div class="g3">
+            <div class="field"><label>Owner ID</label><input id="ownerId" placeholder="Owner ID" /></div>
+            <div class="field"><label>Restaurant Name</label><input id="rName" placeholder="e.g. Kacchi Bhai" /></div>
+            <div class="field"><label>Full Address</label><input id="rAddress" placeholder="Street, Area, City" /></div>
+          </div>
+          <div class="actions"><button class="btn btn-p" onclick="registerRestaurant()">✅ Register</button></div>
+          <div id="regMsg" class="msg"></div>
+        </div>
+      </div>
+
+      <!-- MENU -->
+      <div class="section" id="section-menu">
+        <div class="card">
+          <div class="card-title">➕ Add Menu Item</div>
+          <div class="g3">
+            <div class="field"><label>Restaurant ID</label><input id="restIdMenu" placeholder="Restaurant ID" /></div>
+            <div class="field"><label>Item Name</label><input id="itemName" placeholder="e.g. Kacchi Biryani" /></div>
+            <div class="field"><label>Price (৳)</label><input id="itemPrice" type="number" step="0.01"
+                placeholder="350" /></div>
+            <div class="field"><label>Quantity</label><input id="itemQty" type="number" placeholder="50" /></div>
+            <div class="field" style="grid-column:span 2"><label>Add-ons</label><input id="itemAddons"
+                placeholder="Extra raita, Borhani, Salad…" /></div>
+          </div>
+          <div class="actions"><button class="btn btn-p" onclick="addMenuItem()">➕ Add Item</button></div>
+          <div id="menuMsg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">✏️ Update Existing Item</div>
+          <div class="g3">
+            <div class="field"><label>Menu Item ID</label><input id="menuItemId" placeholder="Item ID" /></div>
+            <div class="field"><label>New Quantity</label><input id="menuQty" type="number"
+                placeholder="New stock count" /></div>
+            <div class="field"><label>New Add-ons</label><input id="menuAddons" placeholder="Updated add-ons" /></div>
+          </div>
+          <div class="field" style="max-width:220px;margin-top:.6rem">
+            <label>Availability</label>
+            <select id="menuAvail">
+              <option value="true">✅ Available</option>
+              <option value="false">❌ Unavailable</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button class="btn btn-p" onclick="updateMenuItem()">💾 Save Changes</button>
+            <button class="btn btn-d" onclick="deleteMenuItem()">🗑️ Delete Item</button>
+          </div>
+          <div id="updateMsg" class="msg"></div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE -->
+      <div class="section" id="section-schedule">
+        <div class="card">
+          <div class="card-title">🕐 Set Operating Hours</div>
+          <div class="g3">
+            <div class="field"><label>Restaurant ID</label><input id="schedRestId" placeholder="Restaurant ID" /></div>
+            <div class="field"><label>Open Time</label><input id="openTime" type="time" /></div>
+            <div class="field"><label>Close Time</label><input id="closeTime" type="time" /></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-p" onclick="setSchedule()">💾 Save Schedule</button>
+            <button class="btn btn-o" onclick="getSchedule()">👁️ View Current</button>
+          </div>
+          <div id="schedMsg" class="msg"></div>
+          <div id="schedResult" style="margin-top:.8rem"></div>
+        </div>
+      </div>
+
+      <!-- INCOMING ORDERS -->
+      <div class="section" id="section-orders">
+        <div class="card">
+          <div class="card-title">📋 Incoming Orders by Restaurant</div>
+          <div class="g2">
+            <div class="field"><label>Restaurant ID</label><input id="ordRestId" placeholder="Restaurant ID" /></div>
+            <div style="display:flex;align-items:flex-end;">
+              <button class="btn btn-p" onclick="loadOrdersByRestaurant()" style="width:100%">🔄 Load Orders</button>
+            </div>
+          </div>
+          <div id="rest-orders" style="margin-top:.9rem;"></div>
+        </div>
+      </div>
+
+      <!-- RIDERS -->
+      <div class="section" id="section-riders">
+        <div class="card">
+          <div class="card-title">🛵 All Riders</div>
+          <div class="actions" style="margin-top:0;margin-bottom:.85rem">
+            <button class="btn btn-o btn-sm" onclick="loadRiders()">🔄 Refresh</button>
+          </div>
+          <div id="riders-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📌 Manually Assign Rider</div>
+          <p style="color:var(--muted);font-size:.83rem;margin-bottom:.9rem;line-height:1.6">
+            Use this to assign a specific rider to an order. Auto-assign is available on the customer UI.
+            Check the rider list above first to find an available rider ID.
+          </p>
+          <div class="g2">
+            <div class="field"><label>Order ID</label><input id="orderId" placeholder="Order ID" /></div>
+            <div class="field"><label>Rider ID</label><input id="riderId" placeholder="Rider ID (from list above)" />
+            </div>
+          </div>
+          <div class="actions"><button class="btn btn-p" onclick="assignRider()">🛵 Dispatch Rider</button></div>
+          <div id="riderMsg" class="msg"></div>
+        </div>
+      </div>
+
+      <!-- PAYMENTS -->
+      <div class="section" id="section-payments">
+        <div class="card">
+          <div class="card-title">💰 Payment Records</div>
+          <div class="g2">
+            <div class="field"><label>Restaurant ID</label><input id="payRestId" placeholder="Restaurant ID" /></div>
+            <div style="display:flex;align-items:flex-end;">
+              <button class="btn btn-p" onclick="loadPayments()" style="width:100%">🔄 Fetch Payments</button>
+            </div>
+          </div>
+          <div id="payments-container" style="margin-top:1rem;"></div>
+        </div>
+      </div>
+
+      <!-- COUPONS -->
+      <div class="section" id="section-coupons">
+        <div class="card">
+          <div class="card-title">🏷️ Create Coupon</div>
+          <div class="g2">
+            <div class="field"><label>Coupon Code</label><input id="couponCode" placeholder="e.g. SAVE20" /></div>
+            <div class="field"><label>Discount (%)</label><input id="couponDiscount" type="number" min="1" max="100"
+                placeholder="e.g. 20" /></div>
+          </div>
+          <div class="actions"><button class="btn btn-p" onclick="addCoupon()">✅ Create Coupon</button></div>
+          <div id="couponMsg" class="msg"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📋 All Coupons</div>
+          <div class="actions" style="margin-top:0;margin-bottom:.85rem">
+            <button class="btn btn-o btn-sm" onclick="loadCoupons()">🔄 Load Coupons</button>
+          </div>
+          <div id="coupons-list"></div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+    <footer>© 2025 Dorja Khul · দরজা খুল · Admin Panel</footer>
+  </div><!-- /main -->
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

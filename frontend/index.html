@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>দরজা খুল — Dorja Khul</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">
+      🚪 Dorja Khul
+      <span class="logo-sub">দরজা খুল</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="showPage('discover',this)">🏪 Discover</button>
+      <button class="tab-btn" onclick="showPage('order',this)">🛒 Order</button>
+      <button class="tab-btn" onclick="showPage('myorders',this)">📋 My Orders</button>
+      <button class="tab-btn" onclick="showPage('track',this)">📡 Track</button>
+      <button class="tab-btn" onclick="showPage('account',this)">👤 Account</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">🔥 Fast delivery across the city</div>
+    <h1>Open the door to <em>great food.</em></h1>
+    <p>Browse restaurants near you and get your meal delivered fast.</p>
+    <div class="hero-bn">দরজা খুল · Your city, your kitchen</div>
+  </div>
+
+  <div class="main">
+
+    <!-- ═══ DISCOVER ═══ -->
+    <div class="page active" id="page-discover">
+
+      <div class="card">
+        <div class="card-title">🏪 All Restaurants</div>
+        <div class="actions" style="margin-top:0;margin-bottom:.9rem;">
+          <button class="btn btn-primary" onclick="loadAllRestaurants()">🔄 Load All</button>
+        </div>
+        <div id="all-restaurants"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📍 Search by Area</div>
+        <div class="g2">
+          <div class="field">
+            <label>Neighbourhood / Street</label>
+            <input id="area" placeholder="e.g. Dhanmondi, Gulshan, Banani…" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn btn-primary" onclick="searchRestaurants()" style="width:100%">🔍 Search</button>
+          </div>
+        </div>
+        <div id="search-restaurants" style="margin-top:.9rem;"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🍽️ Menu</div>
+        <div class="g2">
+          <div class="field">
+            <label>Restaurant ID</label>
+            <input id="restaurantId" placeholder="Click a restaurant above or type ID" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn btn-primary" onclick="loadMenu()" style="width:100%">📋 Load Menu</button>
+          </div>
+        </div>
+        <div id="menu-list" style="margin-top:.9rem;"></div>
+      </div>
+
+    </div>
+
+    <!-- ═══ ORDER ═══ -->
+    <div class="page" id="page-order">
+
+      <div class="card">
+        <div class="card-title">🛒 Place Order</div>
+        <div class="g2">
+          <div class="field"><label>Customer ID</label><input id="customerId" placeholder="Your customer ID" /></div>
+          <div class="field"><label>Restaurant ID</label><input id="ord-restId" placeholder="Restaurant ID" /></div>
+          <div class="field"><label>Menu Item ID</label><input id="menuItemId" placeholder="Item ID from menu" /></div>
+          <div class="field"><label>Quantity</label><input id="qty" type="number" placeholder="1" min="1" /></div>
+          <div class="field" style="grid-column:span 2">
+            <label>Coupon Code <span
+                style="font-weight:400;text-transform:none;font-size:.68rem">(optional)</span></label>
+            <input id="coupon" placeholder="e.g. SAVE20" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="placeOrder()">🛍️ Place Order</button>
+        </div>
+        <div id="orderResult" class="msg"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💳 Payment</div>
+        <div class="g2">
+          <div class="field"><label>Order ID</label><input id="orderIdPay" placeholder="Order ID" /></div>
+          <div class="field">
+            <label>Method</label>
+            <select id="payMethod">
+              <option value="CASH">💵 Cash on Delivery</option>
+              <option value="CARD">💳 Card</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="payOrder()">✅ Pay Now</button>
+          <button class="btn btn-outline" onclick="assignRider()">🛵 Auto-Assign Rider</button>
+        </div>
+        <div id="payResult" class="msg"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📦 Delivery Progress</div>
+        <div class="g2">
+          <div class="field"><label>Order ID</label><input id="orderIdProgress" placeholder="Order ID" /></div>
+          <div class="field">
+            <label>Status</label>
+            <select id="progressStatus">
+              <option value="PREPARING">🍳 Preparing</option>
+              <option value="OUT_FOR_DELIVERY">🛵 Out for Delivery</option>
+              <option value="DELIVERED">✅ Delivered</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="updateProgress()">Update Progress</button>
+        </div>
+        <div id="progressResult" class="msg"></div>
+      </div>
+
+    </div>
+
+    <!-- ═══ MY ORDERS ═══ -->
+    <div class="page" id="page-myorders">
+
+      <div class="card">
+        <div class="card-title">📋 Order History</div>
+        <div class="g2">
+          <div class="field">
+            <label>Your Customer ID</label>
+            <input id="historyCustomerId" placeholder="Enter your customer ID" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn btn-primary" onclick="loadOrderHistory()" style="width:100%">🔄 Load Orders</button>
+          </div>
+        </div>
+        <div id="order-history" style="margin-top:.9rem;"></div>
+      </div>
+
+    </div>
+
+    <!-- ═══ TRACK ═══ -->
+    <div class="page" id="page-track">
+
+      <div class="card">
+        <div class="card-title">📡 Track Order</div>
+        <div class="g2">
+          <div class="field">
+            <label>Order ID</label>
+            <input id="orderIdTrack" placeholder="Enter your order ID" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn btn-primary" onclick="trackOrder()" style="width:100%">🔎 Track</button>
+          </div>
+        </div>
+        <div id="trackResult" style="margin-top:.9rem;"></div>
+      </div>
+
+    </div>
+
+    <!-- ═══ ACCOUNT ═══ -->
+    <div class="page" id="page-account">
+
+      <div class="card">
+        <div class="card-title">👤 Register as Customer</div>
+        <div class="g3">
+          <div class="field"><label>Full Name</label><input id="custName" placeholder="Your name" /></div>
+          <div class="field"><label>Phone</label><input id="custPhone" placeholder="+880 …" /></div>
+          <div class="field"><label>Delivery Address</label><input id="custAddress" placeholder="Street, Area" /></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="registerCustomer()">📝 Register</button>
+        </div>
+        <div id="custMsg" class="msg"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">👥 All Registered Customers</div>
+        <div class="actions" style="margin-top:0;margin-bottom:.9rem;">
+          <button class="btn btn-outline btn-sm" onclick="loadCustomers()">🔄 Refresh</button>
+        </div>
+        <div id="customers-list"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>© 2025 Dorja Khul · দরজা খুল · Food Delivery Platform</footer>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
